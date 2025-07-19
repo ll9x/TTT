@@ -1,7 +1,7 @@
 {
   "name": "tic-tac-toe-online",
   "version": "1.0.0",
-  "description": "لعبة X-O أونلاين للشخصين",
+  "description": "لعبة X-O44 أونلاين للشخصين",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
