@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة X-O أونلاين للشخصين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- شاشة الانضمام -->
+    <div id="join-screen" class="screen">
+        <div class="join-container">
+            <h1>🎮 لعبة X-O أونلاين 🎮</h1>
+            <div class="join-form">
+                <input type="text" id="player-name" placeholder="أدخل اسمك" maxlength="20" required>
+                <button id="join-btn" class="btn btn-primary">انضم للعبة</button>
+            </div>
+            <div class="game-info-text">
+                <p>🌐 العب مع أصدقائك أونلاين</p>
+                <p>⚡ اتصال مباشر وسريع</p>
+                <p>🏆 تتبع النقاط والإحصائيات</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة الانتظار -->
+    <div id="waiting-screen" class="screen hidden">
+        <div class="waiting-container">
+            <h2>🔄 في انتظار لاعب آخر...</h2>
+            <div class="loading-spinner"></div>
+            <p>شارك رابط اللعبة مع صديقك!</p>
+            <div class="room-info">
+                <p>رقم الغرفة: <span id="room-id"></span></p>
+                <button id="copy-link-btn" class="btn btn-secondary">📋 نسخ الرابط</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة اللعبة -->
+    <div id="game-screen" class="screen hidden">
+        <div class="container">
+            <header>
+                <h1>🎮 لعبة X-O أونلاين 🎮</h1>
+                <div class="players-info">
+                    <div class="player-card" id="player-x-card">
+                        <div class="player-symbol">X</div>
+                        <div class="player-name" id="player-x-name">اللاعب X</div>
+                        <div class="player-score" id="score-x">0</div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="player-card" id="player-o-card">
+                        <div class="player-symbol">O</div>
+                        <div class="player-name" id="player-o-name">اللاعب O</div>
+                        <div class="player-score" id="score-o">0</div>
+                    </div>
+                </div>
+                <div class="current-turn">
+                    <span>الدور الحالي: </span>
+                    <span id="current-player-display">X</span>
+                </div>
+            </header>
+
+            <main>
+                <div class="game-board" id="game-board">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+
+                <div class="game-status" id="game-status">
+                    ابدأ اللعب! اللاعب X يبدأ أولاً
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" id="restart-btn">🔄 لعبة جديدة</button>
+                    <button class="btn btn-secondary" id="reset-score-btn">🗑️ إعادة تعيين النتائج</button>
+                </div>
+
+                <div class="tie-score">
+                    <span>التعادل: </span>
+                    <span id="score-tie">0</span>
+                </div>
+            </main>
+
+            <!-- منطقة الدردشة -->
+            <div class="chat-section">
+                <div class="chat-header">
+                    <h3>💬 الدردشة</h3>
+                    <button id="toggle-chat" class="btn-icon">📱</button>
+                </div>
+                <div class="chat-container" id="chat-container">
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <input type="text" id="chat-input" placeholder="اكتب رسالة..." maxlength="100">
+                        <button id="send-chat" class="btn btn-primary">إرسال</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة قطع الاتصال -->
+    <div id="disconnect-screen" class="screen hidden">
+        <div class="disconnect-container">
+            <h2>⚠️ انقطع الاتصال</h2>
+            <p id="disconnect-message">اللاعب الآخر قطع الاتصال</p>
+            <button id="return-home-btn" class="btn btn-primary">العودة للرئيسية</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

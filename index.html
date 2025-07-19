@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة X-O للشخصين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 لعبة X-O 🎮</h1>
+            <div class="game-info">
+                <div class="current-player">
+                    <span>الدور الحالي: </span>
+                    <span id="current-player-display">X</span>
+                </div>
+                <div class="score">
+                    <div class="score-item">
+                        <span>اللاعب X: </span>
+                        <span id="score-x">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span>اللاعب O: </span>
+                        <span id="score-o">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span>التعادل: </span>
+                        <span id="score-tie">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-board" id="game-board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+
+            <div class="game-status" id="game-status">
+                ابدأ اللعب! اللاعب X يبدأ أولاً
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" id="restart-btn">🔄 لعبة جديدة</button>
+                <button class="btn btn-secondary" id="reset-score-btn">🗑️ إعادة تعيين النتائج</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="game-rules">
+                <h3>قواعد اللعبة:</h3>
+                <ul>
+                    <li>اللاعب الأول يستخدم X والثاني يستخدم O</li>
+                    <li>الهدف هو الحصول على ثلاث علامات متتالية (أفقياً أو عمودياً أو قطرياً)</li>
+                    <li>إذا امتلأت اللوحة دون فائز، فالنتيجة تعادل</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

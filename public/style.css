@@ -1,0 +1,556 @@
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+/* الشاشات */
+.screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.screen.hidden {
+    display: none;
+}
+
+/* شاشة الانضمام */
+.join-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    width: 100%;
+}
+
+.join-container h1 {
+    color: #2d3748;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.join-form {
+    margin-bottom: 30px;
+}
+
+.join-form input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.join-form input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 20px rgba(66, 153, 225, 0.3);
+}
+
+.game-info-text {
+    color: #4a5568;
+    line-height: 1.8;
+}
+
+.game-info-text p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+/* شاشة الانتظار */
+.waiting-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    width: 100%;
+}
+
+.waiting-container h2 {
+    color: #2d3748;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e2e8f0;
+    border-top: 5px solid #4299e1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.room-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(66, 153, 225, 0.1);
+    border-radius: 15px;
+}
+
+.room-info p {
+    margin-bottom: 15px;
+    color: #2d3748;
+    font-weight: bold;
+}
+
+/* شاشة اللعبة */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* معلومات اللاعبين */
+.players-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.player-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.player-card.active {
+    background: linear-gradient(145deg, #bee3f8, #90cdf4);
+    transform: scale(1.05);
+}
+
+.player-symbol {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.player-card:first-child .player-symbol {
+    color: #e53e3e;
+}
+
+.player-card:last-child .player-symbol {
+    color: #3182ce;
+}
+
+.player-name {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #2d3748;
+}
+
+.player-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.vs {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4a5568;
+    padding: 0 20px;
+}
+
+.current-turn {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#current-player-display {
+    color: #ffd700;
+    font-size: 1.4rem;
+}
+
+/* الرأس */
+header h1 {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* اللوحة الرئيسية */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(145deg, #f7fafc, #edf2f7);
+    border: 3px solid #e2e8f0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cell:hover:not(.disabled) {
+    background: linear-gradient(145deg, #e2e8f0, #cbd5e0);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.cell.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.cell.x {
+    color: #e53e3e;
+    background: linear-gradient(145deg, #fed7d7, #feb2b2);
+    border-color: #e53e3e;
+}
+
+.cell.o {
+    color: #3182ce;
+    background: linear-gradient(145deg, #bee3f8, #90cdf4);
+    border-color: #3182ce;
+}
+
+.cell.winning {
+    animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(229, 62, 62, 0.5);
+    }
+    to {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(229, 62, 62, 0.8);
+    }
+}
+
+.game-status {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    color: #2d3748;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.tie-score {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(145deg, #4299e1, #3182ce);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(145deg, #3182ce, #2c5282);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.btn-secondary {
+    background: linear-gradient(145deg, #ed8936, #dd6b20);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(145deg, #dd6b20, #c05621);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* منطقة الدردشة */
+.chat-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.chat-header h3 {
+    color: #2d3748;
+    margin: 0;
+}
+
+.chat-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.chat-messages {
+    min-height: 100px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f7fafc;
+    border-radius: 10px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.chat-message .sender {
+    font-weight: bold;
+    color: #3182ce;
+    font-size: 0.9rem;
+}
+
+.chat-message .content {
+    color: #2d3748;
+    margin-top: 2px;
+}
+
+.chat-message .timestamp {
+    font-size: 0.8rem;
+    color: #718096;
+    text-align: left;
+    margin-top: 5px;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input-container input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.chat-input-container input:focus {
+    outline: none;
+    border-color: #4299e1;
+}
+
+.chat-input-container button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+/* شاشة قطع الاتصال */
+.disconnect-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    width: 100%;
+}
+
+.disconnect-container h2 {
+    color: #e53e3e;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.disconnect-container p {
+    color: #4a5568;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .players-info {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .vs {
+        transform: rotate(90deg);
+        padding: 10px 0;
+    }
+    
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    .chat-section {
+        margin-top: 15px;
+    }
+    
+    .chat-container {
+        max-height: 150px;
+    }
+    
+    .join-container, .waiting-container, .disconnect-container {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .join-container h1 {
+        font-size: 2rem;
+    }
+    
+    .cell {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+    
+    .player-card {
+        min-width: 100px;
+        padding: 10px;
+    }
+    
+    .player-symbol {
+        font-size: 1.5rem;
+    }
+    
+    .player-score {
+        font-size: 1.2rem;
+    }
+}
